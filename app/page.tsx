@@ -1,3 +1,5 @@
+import { HomePageSection } from "./_components/HomePageSection";
+
 export default function Home() {
-  return <div>TODO List</div>;
+  return <HomePageSection />;
 }
