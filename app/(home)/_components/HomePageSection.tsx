@@ -1,11 +1,12 @@
-import styles from "./HomePageSection.module.css";
+import styles from "@/app/(home)/styles/homePageSection.module.css";
+import { TodoList } from "./TodoList";
 
 export const HomePageSection = () => {
   return (
     <main className={styles.wrapper}>
       <div className={styles.container}>
         <h2>TodoList</h2>
-        {/* TodoList component will be here */}
+        <TodoList />
       </div>
     </main>
   );
