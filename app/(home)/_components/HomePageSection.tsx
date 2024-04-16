@@ -1,4 +1,4 @@
-import styles from "./HomePageSection.module.css";
+import styles from "@/app/(home)/styles/homePageSection.module.css";
 
 export const HomePageSection = () => {
   return (
