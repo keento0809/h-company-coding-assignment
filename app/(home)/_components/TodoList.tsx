@@ -1,10 +1,16 @@
 "use client";
 
 import styles from "@/app/(home)/styles/todoList.module.css";
-import { Button } from "@/app/_components/ui/Button";
+import { TodoItem } from "./TodoItem";
+
+export type Todo = {
+  id: string;
+  title: string;
+  isDone: boolean;
+};
 
 // TODO: This dummy data should be removed later
-const DUMMY_TODO_ITEMS = [
+const DUMMY_TODO_ITEMS: Todo[] = [
   {
     id: "1",
     title: "Wash dishes",
@@ -31,32 +37,7 @@ export const TodoList = () => {
   return (
     <ul className={styles.todoListContainer}>
       {DUMMY_TODO_ITEMS.map((todo) => {
-        return (
-          // This styling is temporary use
-          <li
-            key={todo.id}
-            style={{
-              listStyle: "none",
-              padding: "0.8rem 1.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "1px solid #333",
-              borderRadius: "10px",
-            }}
-          >
-            <div>
-              <span style={{ fontSize: "16px" }}>{todo.title}</span>
-            </div>
-            {/* // This styling is temporary use */}
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              {/* TODO: onClick events should be fixed later */}
-              <Button text="Detail" onClick={() => {}} />
-              <Button text="Edit" onClick={() => {}} />
-              <Button text="Delete" onClick={() => {}} />
-            </div>
-          </li>
-        );
+        return <TodoItem todo={todo} key={todo.id} />;
       })}
     </ul>
   );
