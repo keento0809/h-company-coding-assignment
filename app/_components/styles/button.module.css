@@ -1,0 +1,15 @@
+.button {
+  padding: 0.4rem 1.3rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 0.75rem;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: white;
+  opacity: 0.9;
+  background-color: rebeccapurple;
+}
