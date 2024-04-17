@@ -4,6 +4,7 @@ import styles from "@/app/(home)/styles/homePageSection.module.css";
 import { TodoList } from "./TodoList";
 import { EditTaskModal } from "./EditTaskModal";
 import { useHomePageSection } from "../_hooks/useHomePageSection";
+import { NewTodoItemForm } from "./NewTodoItemForm";
 
 export const HomePageSection = () => {
   const { isModalOpen, closeModal } = useHomePageSection();
@@ -12,6 +13,7 @@ export const HomePageSection = () => {
       {isModalOpen && <EditTaskModal onClose={closeModal} />}
       <div className={styles.container}>
         <h2>TodoList</h2>
+        <NewTodoItemForm />
         <TodoList />
       </div>
     </main>
