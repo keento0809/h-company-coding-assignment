@@ -4,9 +4,10 @@ import styles from "@/app/(home)/styles/todoItem.module.css";
 
 type TodoItemProps = {
   todo: Todo;
+  onDelete: (id: string) => void;
 };
 
-export const TodoItem = ({ todo }: TodoItemProps) => {
+export const TodoItem = ({ todo, onDelete }: TodoItemProps) => {
   return (
     <li className={styles.todoItemContainer}>
       <div>
@@ -15,7 +16,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
       <div className={styles.todoItemActionButtons}>
         <Button text="Detail" onClick={() => {}} />
         <Button text="Edit" onClick={() => {}} />
-        <Button text="Delete" onClick={() => {}} />
+        <Button text="Delete" onClick={() => onDelete(todo.id)} />
       </div>
     </li>
   );

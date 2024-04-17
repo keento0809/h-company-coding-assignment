@@ -13,6 +13,7 @@ export const HomePageSection = () => {
     todos,
     newTodoTitle,
     handleChangeNewTodoTitle,
+    handleDeleteTodo,
     onSubmit,
   } = useHomePageSection();
   return (
@@ -25,7 +26,7 @@ export const HomePageSection = () => {
           onChange={handleChangeNewTodoTitle}
           taskTitle={newTodoTitle}
         />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onDelete={handleDeleteTodo} />
       </div>
     </main>
   );
