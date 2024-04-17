@@ -1,10 +1,10 @@
 "use client";
 
 import styles from "@/app/_components/styles/button.module.css";
+import { ComponentProps } from "react";
 
-type ButtonProps = {
+type ButtonProps = ComponentProps<"button"> & {
   text: string;
-  onClick?: () => void;
 };
 
 export const Button = ({ text, onClick }: ButtonProps) => {
