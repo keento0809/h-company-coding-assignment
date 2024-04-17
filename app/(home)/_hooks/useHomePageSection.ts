@@ -24,6 +24,11 @@ export const useHomePageSection = () => {
     setNewTodoTitle("");
   };
 
+  const handleDeleteTodo = (id: string) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos([...updatedTodos]);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -38,6 +43,7 @@ export const useHomePageSection = () => {
     todos,
     newTodoTitle,
     onSubmit,
+    handleDeleteTodo,
     handleChangeNewTodoTitle,
   };
 };
