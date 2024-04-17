@@ -1,5 +1,5 @@
 import { Todo } from "./TodoList";
-import { Button } from "@/app/_components/ui/Button";
+import { Button } from "@/app/_components/ui/button/Button";
 import styles from "@/app/(home)/styles/todoItem.module.css";
 
 type TodoItemProps = {
