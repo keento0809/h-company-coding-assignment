@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useHomePageSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
