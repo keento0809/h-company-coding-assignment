@@ -7,14 +7,25 @@ import { useHomePageSection } from "../_hooks/useHomePageSection";
 import { NewTodoItemForm } from "./NewTodoItemForm";
 
 export const HomePageSection = () => {
-  const { isModalOpen, closeModal } = useHomePageSection();
+  const {
+    isModalOpen,
+    closeModal,
+    todos,
+    newTodoTitle,
+    handleChangeNewTodoTitle,
+    onSubmit,
+  } = useHomePageSection();
   return (
     <main className={styles.wrapper}>
       {isModalOpen && <EditTaskModal onClose={closeModal} />}
       <div className={styles.container}>
         <h2>TodoList</h2>
-        <NewTodoItemForm />
-        <TodoList />
+        <NewTodoItemForm
+          onSubmit={onSubmit}
+          onChange={handleChangeNewTodoTitle}
+          taskTitle={newTodoTitle}
+        />
+        <TodoList todos={todos} />
       </div>
     </main>
   );
