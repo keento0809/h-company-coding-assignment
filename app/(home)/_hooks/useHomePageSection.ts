@@ -7,7 +7,6 @@ export const useHomePageSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTodoTitle, setNewTodoTitle] = useState("");
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
-  const [editingTodoTitle, setEditingTodoTitle] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const handleChangeTodoTitle = (
@@ -19,7 +18,12 @@ export const useHomePageSection = () => {
         setNewTodoTitle(e.target.value);
 
       case "EDIT":
-        setEditingTodoTitle(e.target.value);
+        setEditingTodo((prev) => {
+          if (prev) {
+            return { ...prev, title: e.target.value };
+          }
+          return null;
+        });
 
       default:
         return;
@@ -50,18 +54,13 @@ export const useHomePageSection = () => {
 
   const handleUpdateTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (editingTodoTitle.trim() === "")
-      throw new Error("Editing task title is empty.");
-    if (!editingTodo) throw new Error("Failed to update todo");
+    if (!editingTodo || editingTodo?.title.trim() === "")
+      throw new Error("Failed to update todo...");
 
-    const updatedTodo: Todo = { ...editingTodo, title: editingTodoTitle };
-    const updatedTodos = todos.map((todo) =>
-      todo.id === updatedTodo.id ? updatedTodo : todo
+    setTodos(
+      todos.map((todo) => (todo.id === editingTodo?.id ? editingTodo : todo))
     );
-
-    setTodos(updatedTodos);
     setIsModalOpen(false);
-    setEditingTodoTitle("");
   };
 
   const handleDeleteTodo = (id: string) => {
