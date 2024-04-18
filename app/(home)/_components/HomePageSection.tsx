@@ -16,6 +16,7 @@ export const HomePageSection = () => {
     handleChangeTodoTitle,
     handleAddNewTodo,
     handleOpenEditTodoModal,
+    handleToggleIsDone,
     handleUpdateTodo,
     handleDeleteTodo,
   } = useHomePageSection();
@@ -38,6 +39,7 @@ export const HomePageSection = () => {
         />
         <TodoList
           todos={todos}
+          onIsDone={handleToggleIsDone}
           onEdit={handleOpenEditTodoModal}
           onDelete={handleDeleteTodo}
         />
