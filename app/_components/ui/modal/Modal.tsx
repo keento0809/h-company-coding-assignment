@@ -9,9 +9,5 @@ type ModalProps = {
 };
 
 export const Modal = ({ children, onClose }: ModalProps) => {
-  return (
-    <div className={styles.modal} onClick={onClose}>
-      {children}
-    </div>
-  );
+  return <div className={styles.modal}>{children}</div>;
 };
