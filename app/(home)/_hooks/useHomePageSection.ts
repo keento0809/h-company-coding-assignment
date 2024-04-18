@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Todo } from "../_components/TodoList";
 
+export type TodoType = "NEW" | "EDIT";
+
 export const useHomePageSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTodoTitle, setNewTodoTitle] = useState("");
@@ -8,8 +10,20 @@ export const useHomePageSection = () => {
   const [editingTodoTitle, setEditingTodoTitle] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleChangeNewTodoTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodoTitle(e.target.value);
+  const handleChangeTodoTitle = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    todoType: TodoType
+  ) => {
+    switch (todoType) {
+      case "NEW":
+        setNewTodoTitle(e.target.value);
+
+      case "EDIT":
+        setEditingTodoTitle(e.target.value);
+
+      default:
+        return;
+    }
   };
 
   const handleAddNewTodo = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,18 +40,12 @@ export const useHomePageSection = () => {
     setNewTodoTitle("");
   };
 
-  const handleEditTodo = (id: string) => {
+  const handleOpenEditTodoModal = (id: string) => {
     setIsModalOpen(true);
     const editTodo = todos.find((todo) => todo.id === id);
     if (editTodo) {
       setEditingTodo(editTodo);
-    } else throw new Error("Failed to get todoItem");
-  };
-
-  const handleChangeEditingTodoTitle = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEditingTodoTitle(e.target.value);
+    } else throw new Error("Failed to get editTodoItem");
   };
 
   const handleUpdateTodo = (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,6 +58,7 @@ export const useHomePageSection = () => {
     const updatedTodos = todos.map((todo) =>
       todo.id === updatedTodo.id ? updatedTodo : todo
     );
+
     setTodos(updatedTodos);
     setIsModalOpen(false);
     setEditingTodoTitle("");
@@ -60,25 +69,20 @@ export const useHomePageSection = () => {
     setTodos([...updatedTodos]);
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   return {
     isModalOpen,
-    openModal,
     closeModal,
     todos,
     newTodoTitle,
     editingTodo,
+    handleChangeTodoTitle,
     handleAddNewTodo,
-    handleEditTodo,
+    handleOpenEditTodoModal,
     handleUpdateTodo,
     handleDeleteTodo,
-    handleChangeNewTodoTitle,
-    handleChangeEditingTodoTitle,
   };
 };
