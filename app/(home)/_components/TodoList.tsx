@@ -12,14 +12,22 @@ export type Todo = {
 
 type TodoListProps = {
   todos: Todo[];
+  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 };
 
-export const TodoList: FC<TodoListProps> = ({ todos, onDelete }) => {
+export const TodoList: FC<TodoListProps> = ({ todos, onEdit, onDelete }) => {
   return (
     <ul className={styles.todoListContainer}>
       {todos.map((todo) => {
-        return <TodoItem todo={todo} key={todo.id} onDelete={onDelete} />;
+        return (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        );
       })}
     </ul>
   );
