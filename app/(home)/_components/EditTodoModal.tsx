@@ -3,9 +3,13 @@ import styles from "@/app/(home)/styles/editTaskModal.module.css";
 import { Button } from "@/app/_components/ui/button/Button";
 import { TextInput } from "@/app/_components/ui/input/TextInput";
 import { Todo } from "./TodoList";
+import { TodoType } from "../_hooks/useHomePageSection";
 
 type EditTodoModalProps = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    todoType: TodoType
+  ) => void;
   onUpdate: (e: React.FormEvent<HTMLFormElement>) => void;
   onClose: () => void;
   editingTodo: Todo | null;
@@ -26,7 +30,7 @@ export const EditTodoModal = ({
             id="todoTitle"
             type="text"
             defaultValue={editingTodo ? editingTodo.title : ""}
-            onChange={onChange}
+            onChange={(e) => onChange(e, "EDIT")}
           />
         </div>
         <div className={styles.modalActionButtons}>

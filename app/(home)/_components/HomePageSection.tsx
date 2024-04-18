@@ -13,10 +13,9 @@ export const HomePageSection = () => {
     todos,
     newTodoTitle,
     editingTodo,
-    handleChangeNewTodoTitle,
-    handleChangeEditingTodoTitle,
+    handleChangeTodoTitle,
     handleAddNewTodo,
-    handleEditTodo,
+    handleOpenEditTodoModal,
     handleUpdateTodo,
     handleDeleteTodo,
   } = useHomePageSection();
@@ -27,19 +26,19 @@ export const HomePageSection = () => {
           onClose={closeModal}
           onUpdate={handleUpdateTodo}
           editingTodo={editingTodo}
-          onChange={handleChangeEditingTodoTitle}
+          onChange={handleChangeTodoTitle}
         />
       )}
       <div className={styles.container}>
         <h2>TodoList</h2>
         <NewTodoItemForm
           onSubmit={handleAddNewTodo}
-          onChange={handleChangeNewTodoTitle}
+          onChange={handleChangeTodoTitle}
           taskTitle={newTodoTitle}
         />
         <TodoList
           todos={todos}
-          onEdit={handleEditTodo}
+          onEdit={handleOpenEditTodoModal}
           onDelete={handleDeleteTodo}
         />
       </div>
