@@ -4,19 +4,27 @@ import styles from "@/app/(home)/styles/todoItem.module.css";
 
 type TodoItemProps = {
   todo: Todo;
+  onIsDone: (todo: Todo) => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 };
 
-export const TodoItem = ({ todo, onEdit, onDelete }: TodoItemProps) => {
+export const TodoItem = ({
+  todo,
+  onIsDone,
+  onEdit,
+  onDelete,
+}: TodoItemProps) => {
   return (
     <li className={styles.todoItemContainer}>
-      <div
-        className=""
-        style={{ display: "flex", alignItems: "center", gap: "1rem" }}
-      >
-        <input type="checkbox" />
-        <span className={styles.todoItemTitle}>{todo.title}</span>
+      <div className={styles.todoItemTitleSection}>
+        <input type="checkbox" onClick={() => onIsDone(todo)} />
+        <span
+          className={styles.todoItemTitle}
+          style={{ textDecoration: todo.isDone ? "line-through " : "" }}
+        >
+          {todo.title}
+        </span>
       </div>
       <div className={styles.todoItemActionButtons}>
         <Button text="Detail" onClick={() => {}} />

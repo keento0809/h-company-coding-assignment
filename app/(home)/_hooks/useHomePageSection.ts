@@ -52,6 +52,13 @@ export const useHomePageSection = () => {
     } else throw new Error("Failed to get editTodoItem");
   };
 
+  const handleToggleIsDone = (todo: Todo) => {
+    const updatedTodo: Todo = { ...todo, isDone: !todo.isDone };
+    setTodos(
+      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
+    );
+  };
+
   const handleUpdateTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!editingTodo || editingTodo?.title.trim() === "")
@@ -81,6 +88,7 @@ export const useHomePageSection = () => {
     handleChangeTodoTitle,
     handleAddNewTodo,
     handleOpenEditTodoModal,
+    handleToggleIsDone,
     handleUpdateTodo,
     handleDeleteTodo,
   };
