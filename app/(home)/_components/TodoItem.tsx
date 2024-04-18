@@ -11,7 +11,11 @@ type TodoItemProps = {
 export const TodoItem = ({ todo, onEdit, onDelete }: TodoItemProps) => {
   return (
     <li className={styles.todoItemContainer}>
-      <div>
+      <div
+        className=""
+        style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+      >
+        <input type="checkbox" />
         <span className={styles.todoItemTitle}>{todo.title}</span>
       </div>
       <div className={styles.todoItemActionButtons}>
