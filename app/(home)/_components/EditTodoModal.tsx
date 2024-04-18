@@ -29,6 +29,7 @@ export const EditTodoModal = ({
           <TextInput
             id="todoTitle"
             type="text"
+            name="title"
             defaultValue={editingTodo ? editingTodo.title : ""}
             onChange={(e) => onChange(e, "EDIT")}
           />
