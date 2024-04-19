@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode, useState, createContext, useContext } from "react";
 
 export type Todo = {
