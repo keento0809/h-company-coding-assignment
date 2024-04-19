@@ -18,6 +18,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
         <input
           type="checkbox"
           checked={todo.isDone}
+          readOnly
           onClick={() => handleToggleIsDone(todo)}
         />
         <span
