@@ -8,6 +8,7 @@ import {
   useContext,
   useEffect,
 } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export type Todo = {
   id: string;
@@ -68,7 +69,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     if (newTodoTitle.trim() === "") throw new Error("New task title is empty.");
 
     const newTodo = {
-      id: String(todos.length + 1),
+      id: uuidv4(),
       title: newTodoTitle,
       isDone: false,
     };
@@ -167,7 +168,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
 export const useTodoContext = () => {
   const context = useContext(TodoContext);
-  if (!context) throw new Error("Provide correct context");
+  if (!context) throw new Error("Please provide correct context");
 
   return context;
 };
