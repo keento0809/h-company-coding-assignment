@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useState, createContext, useContext } from "react";
+import axios from "axios";
 
 export type Todo = {
   id: string;
@@ -24,6 +25,7 @@ type TodoContextType = {
   handleToggleIsDone: (todo: Todo) => void;
   handleUpdateTodo: (e: React.FormEvent<HTMLFormElement>) => void;
   handleDeleteTodo: (id: string) => void;
+  handleAddTodoToJSONData: (todo: Todo) => Promise<void>;
   closeModal: () => void;
 };
 
@@ -56,7 +58,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const handleAddNewTodo = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddNewTodo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newTodoTitle.trim() === "") throw new Error("New task title is empty.");
 
@@ -68,6 +70,13 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
     setTodos((prev) => [...prev, newTodo]);
     setNewTodoTitle("");
+    await fetch("/api/todos", {
+      method: "POST",
+      body: JSON.stringify(newTodo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   const handleOpenEditTodoModal = (id: string) => {
@@ -105,6 +114,17 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     setIsModalOpen(false);
   };
 
+  // const fetchTodos = async () => {
+  //   const response = await axios.get("/api/todos");
+  //   setTodos(response.data);
+  // };
+
+  const handleAddTodoToJSONData = async (todo: Todo) => {
+    const response = await axios.post("/api/todos", todo);
+    console.log("ok, ", response);
+    // setTodos([...todos, response.data]);
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -118,6 +138,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
         handleToggleIsDone,
         handleUpdateTodo,
         handleDeleteTodo,
+        handleAddTodoToJSONData,
         closeModal,
       }}
     >
