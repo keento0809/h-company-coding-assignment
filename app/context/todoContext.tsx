@@ -1,7 +1,13 @@
 "use client";
 
-import { ReactNode, useState, createContext, useContext } from "react";
 import axios from "axios";
+import {
+  ReactNode,
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+} from "react";
 
 export type Todo = {
   id: string;
@@ -25,7 +31,6 @@ type TodoContextType = {
   handleToggleIsDone: (todo: Todo) => void;
   handleUpdateTodo: (e: React.FormEvent<HTMLFormElement>) => void;
   handleDeleteTodo: (id: string) => void;
-  handleAddTodoToJSONData: (todo: Todo) => Promise<void>;
   closeModal: () => void;
 };
 
@@ -114,16 +119,14 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     setIsModalOpen(false);
   };
 
-  // const fetchTodos = async () => {
-  //   const response = await axios.get("/api/todos");
-  //   setTodos(response.data);
-  // };
-
-  const handleAddTodoToJSONData = async (todo: Todo) => {
-    const response = await axios.post("/api/todos", todo);
-    console.log("ok, ", response);
-    // setTodos([...todos, response.data]);
+  const fetchTodos = async () => {
+    const response = await axios.get<Todo[]>("/api/todos");
+    setTodos(response.data);
   };
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   return (
     <TodoContext.Provider
@@ -138,7 +141,6 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
         handleToggleIsDone,
         handleUpdateTodo,
         handleDeleteTodo,
-        handleAddTodoToJSONData,
         closeModal,
       }}
     >

@@ -7,7 +7,7 @@ const todosFilePath = path.join(process.cwd(), "app/data", "todos.json");
 const readTodos = () => {
   try {
     const data = fs.readFileSync(todosFilePath, "utf8");
-    return JSON.parse(data);
+    return JSON.parse(data) as Todo[];
   } catch (error) {
     console.error("Error reading the todos file:", error);
     if (error instanceof Error) throw new Error(error.message);
