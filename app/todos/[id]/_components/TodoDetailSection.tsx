@@ -27,7 +27,7 @@ export const TodoDetailSection = () => {
         </div>
       </div>
       <div className={styles.actionButtonSection}>
-        <Button text="Back" onClick={() => router.back()} />
+        <Button text="Back" bgColor="gray" onClick={() => router.back()} />
       </div>
     </div>
   );

@@ -21,8 +21,13 @@ export const EditTodoModal = () => {
           />
         </div>
         <div className={styles.modalActionButtons}>
-          <Button type="button" text="Back" onClick={closeModal} />
-          <Button type="submit" text="Update" />
+          <Button
+            type="button"
+            text="Back"
+            bgColor="gray"
+            onClick={closeModal}
+          />
+          <Button type="submit" text="Update" bgColor="purple" />
         </div>
       </form>
     </Modal>

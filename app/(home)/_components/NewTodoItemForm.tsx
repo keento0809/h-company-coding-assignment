@@ -18,7 +18,7 @@ export const NewTodoItemForm: FC = () => {
         />
       </div>
       <div className={styles.formActionButtons}>
-        <Button text="Add" type="submit" />
+        <Button text="Add" bgColor="purple" type="submit" />
       </div>
     </form>
   );
