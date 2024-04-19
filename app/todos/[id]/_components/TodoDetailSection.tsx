@@ -18,11 +18,11 @@ export const TodoDetailSection = () => {
       <h2>Todo Detail - {correspondingTodo?.id}</h2>
       <div className={styles.todoContentsSection}>
         <div className={styles.todoContent}>
-          <h3 className={styles.contentTitle}>Todo title: </h3>
+          <h4 className={styles.contentTitle}>Todo title: </h4>
           <p>{correspondingTodo?.title ?? ""}</p>
         </div>
         <div className={styles.todoContent}>
-          <h3 className={styles.contentTitle}>IsDone: </h3>
+          <h4 className={styles.contentTitle}>IsDone: </h4>
           <p>{correspondingTodo?.isDone ? "Yes" : "Not yet"}</p>
         </div>
       </div>

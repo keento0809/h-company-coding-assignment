@@ -24,10 +24,10 @@
   gap: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #333;
+  font-size: 1.25rem;
 }
 
 .contentTitle {
   font-weight: 500;
-  font-size: 20px;
   min-width: 100px;
 }
