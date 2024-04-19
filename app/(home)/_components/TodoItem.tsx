@@ -1,4 +1,4 @@
-import { Todo } from "./TodoList";
+import { Todo } from "@/app/context/todoContext";
 import { Button } from "@/app/_components/ui/button/Button";
 import styles from "@/app/(home)/styles/todoItem.module.css";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,11 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
   return (
     <li className={styles.todoItemContainer}>
       <div className={styles.todoItemTitleSection}>
-        <input type="checkbox" onClick={() => handleToggleIsDone(todo)} />
+        <input
+          type="checkbox"
+          checked={todo.isDone}
+          onClick={() => handleToggleIsDone(todo)}
+        />
         <span
           className={styles.todoItemTitle}
           style={{ textDecoration: todo.isDone ? "line-through " : "" }}
