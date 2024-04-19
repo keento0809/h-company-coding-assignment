@@ -1,9 +1,35 @@
-import { useState } from "react";
-import { Todo } from "../_components/TodoList";
+"use client";
+
+import { ReactNode, useState, createContext, useContext } from "react";
+
+export type Todo = {
+  id: string;
+  title: string;
+  isDone: boolean;
+};
 
 export type TodoType = "NEW" | "EDIT";
 
-export const useHomePageSection = () => {
+type TodoContextType = {
+  todos: Todo[];
+  newTodoTitle: string;
+  editingTodo: Todo | null;
+  handleChangeTodoTitle: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    todoType: TodoType
+  ) => void;
+  isModalOpen: boolean;
+  handleAddNewTodo: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleOpenEditTodoModal: (id: string) => void;
+  handleToggleIsDone: (todo: Todo) => void;
+  handleUpdateTodo: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleDeleteTodo: (id: string) => void;
+  closeModal: () => void;
+};
+
+const TodoContext = createContext<TodoContextType | null>(null);
+
+export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTodoTitle, setNewTodoTitle] = useState("");
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
@@ -79,17 +105,30 @@ export const useHomePageSection = () => {
     setIsModalOpen(false);
   };
 
-  return {
-    isModalOpen,
-    closeModal,
-    todos,
-    newTodoTitle,
-    editingTodo,
-    handleChangeTodoTitle,
-    handleAddNewTodo,
-    handleOpenEditTodoModal,
-    handleToggleIsDone,
-    handleUpdateTodo,
-    handleDeleteTodo,
-  };
+  return (
+    <TodoContext.Provider
+      value={{
+        todos,
+        newTodoTitle,
+        editingTodo,
+        isModalOpen,
+        handleChangeTodoTitle,
+        handleAddNewTodo,
+        handleOpenEditTodoModal,
+        handleToggleIsDone,
+        handleUpdateTodo,
+        handleDeleteTodo,
+        closeModal,
+      }}
+    >
+      {children}
+    </TodoContext.Provider>
+  );
+};
+
+export const useTodoContext = () => {
+  const context = useContext(TodoContext);
+  if (!context) throw new Error("Provide correct context");
+
+  return context;
 };

@@ -1,24 +1,25 @@
-import { Todo } from "./TodoList";
+import { Todo } from "@/app/context/todoContext";
 import { Button } from "@/app/_components/ui/button/Button";
 import styles from "@/app/(home)/styles/todoItem.module.css";
+import { useRouter } from "next/navigation";
+import { useTodoContext } from "@/app/context/todoContext";
 
 type TodoItemProps = {
   todo: Todo;
-  onIsDone: (todo: Todo) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 };
 
-export const TodoItem = ({
-  todo,
-  onIsDone,
-  onEdit,
-  onDelete,
-}: TodoItemProps) => {
+export const TodoItem = ({ todo }: TodoItemProps) => {
+  const router = useRouter();
+  const { handleToggleIsDone, handleOpenEditTodoModal, handleDeleteTodo } =
+    useTodoContext();
   return (
     <li className={styles.todoItemContainer}>
       <div className={styles.todoItemTitleSection}>
-        <input type="checkbox" onClick={() => onIsDone(todo)} />
+        <input
+          type="checkbox"
+          checked={todo.isDone}
+          onClick={() => handleToggleIsDone(todo)}
+        />
         <span
           className={styles.todoItemTitle}
           style={{ textDecoration: todo.isDone ? "line-through " : "" }}
@@ -27,9 +28,12 @@ export const TodoItem = ({
         </span>
       </div>
       <div className={styles.todoItemActionButtons}>
-        <Button text="Detail" onClick={() => {}} />
-        <Button text="Edit" onClick={() => onEdit(todo.id)} />
-        <Button text="Delete" onClick={() => onDelete(todo.id)} />
+        <Button
+          text="Detail"
+          onClick={() => router.push(`/todos/${todo.id}`)}
+        />
+        <Button text="Edit" onClick={() => handleOpenEditTodoModal(todo.id)} />
+        <Button text="Delete" onClick={() => handleDeleteTodo(todo.id)} />
       </div>
     </li>
   );

@@ -2,28 +2,14 @@ import { Modal } from "@/app/_components/ui/modal/Modal";
 import styles from "@/app/(home)/styles/editTaskModal.module.css";
 import { Button } from "@/app/_components/ui/button/Button";
 import { TextInput } from "@/app/_components/ui/input/TextInput";
-import { Todo } from "./TodoList";
-import { TodoType } from "../_hooks/useHomePageSection";
+import { useTodoContext } from "@/app/context/todoContext";
 
-type EditTodoModalProps = {
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    todoType: TodoType
-  ) => void;
-  onUpdate: (e: React.FormEvent<HTMLFormElement>) => void;
-  onClose: () => void;
-  editingTodo: Todo | null;
-};
-
-export const EditTodoModal = ({
-  onChange,
-  onUpdate,
-  onClose,
-  editingTodo,
-}: EditTodoModalProps) => {
+export const EditTodoModal = () => {
+  const { closeModal, handleUpdateTodo, editingTodo, handleChangeTodoTitle } =
+    useTodoContext();
   return (
-    <Modal onClose={onClose}>
-      <form className={styles.modalContainer} onSubmit={onUpdate}>
+    <Modal onClose={closeModal}>
+      <form className={styles.modalContainer} onSubmit={handleUpdateTodo}>
         <div className={styles.modalTitleSection}>
           <label htmlFor="todoTitle">Title</label>
           <TextInput
@@ -31,11 +17,11 @@ export const EditTodoModal = ({
             type="text"
             name="title"
             defaultValue={editingTodo ? editingTodo.title : ""}
-            onChange={(e) => onChange(e, "EDIT")}
+            onChange={(e) => handleChangeTodoTitle(e, "EDIT")}
           />
         </div>
         <div className={styles.modalActionButtons}>
-          <Button type="button" text="Back" onClick={onClose} />
+          <Button type="button" text="Back" onClick={closeModal} />
           <Button type="submit" text="Update" />
         </div>
       </form>

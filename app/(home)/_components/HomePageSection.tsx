@@ -3,46 +3,18 @@
 import styles from "@/app/(home)/styles/homePageSection.module.css";
 import { TodoList } from "./TodoList";
 import { EditTodoModal } from "./EditTodoModal";
-import { useHomePageSection } from "../_hooks/useHomePageSection";
 import { NewTodoItemForm } from "./NewTodoItemForm";
+import { useTodoContext } from "@/app/context/todoContext";
 
 export const HomePageSection = () => {
-  const {
-    isModalOpen,
-    closeModal,
-    todos,
-    newTodoTitle,
-    editingTodo,
-    handleChangeTodoTitle,
-    handleAddNewTodo,
-    handleOpenEditTodoModal,
-    handleToggleIsDone,
-    handleUpdateTodo,
-    handleDeleteTodo,
-  } = useHomePageSection();
+  const { isModalOpen } = useTodoContext();
   return (
     <main className={styles.wrapper}>
-      {isModalOpen && (
-        <EditTodoModal
-          onClose={closeModal}
-          onUpdate={handleUpdateTodo}
-          editingTodo={editingTodo}
-          onChange={handleChangeTodoTitle}
-        />
-      )}
+      {isModalOpen && <EditTodoModal />}
       <div className={styles.container}>
         <h2>TodoList</h2>
-        <NewTodoItemForm
-          onSubmit={handleAddNewTodo}
-          onChange={handleChangeTodoTitle}
-          taskTitle={newTodoTitle}
-        />
-        <TodoList
-          todos={todos}
-          onIsDone={handleToggleIsDone}
-          onEdit={handleOpenEditTodoModal}
-          onDelete={handleDeleteTodo}
-        />
+        <NewTodoItemForm />
+        <TodoList />
       </div>
     </main>
   );

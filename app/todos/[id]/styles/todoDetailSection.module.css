@@ -4,11 +4,30 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   padding-top: 2rem;
 }
 
-.todoTitle {
+.todoContentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.todoContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.contentTitle {
   font-weight: 500;
   font-size: 20px;
+  min-width: 100px;
 }
