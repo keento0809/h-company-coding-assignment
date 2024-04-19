@@ -16,13 +16,13 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   if (req.method === "POST") {
     const newTodo = (await req.json()) as Todo;
-
     const todos = readTodos();
-    if (todos) {
-      todos.push(newTodo);
-      writeTodos(todos);
-      return NextResponse.json(newTodo, { status: 201 });
-    }
+
+    if (!todos) return NextResponse.json("Todo not found", { status: 404 });
+
+    todos.push(newTodo);
+    writeTodos(todos);
+    return NextResponse.json(newTodo, { status: 201 });
   } else {
     return NextResponse.json(`Method ${req.method} Not Allowed`, {
       status: 405,
@@ -39,14 +39,13 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json("Todo not found", { status: 404 });
     }
 
-    const updatedTodo: Todo = {
-      ...todos[Number(updatingTodo.id)],
-      ...req.body,
-    };
-    todos[Number(updatingTodo.id)] = updatedTodo;
-    writeTodos(todos);
+    const updatedTodos = todos.map((todo) =>
+      todo.id === updatingTodo.id ? updatingTodo : todo
+    );
+    writeTodos(updatedTodos);
+    console.log("upd: ", updatedTodos);
 
-    return NextResponse.json(updatedTodo, { status: 200 });
+    return NextResponse.json(updatingTodo, { status: 200 });
   } else {
     return NextResponse.json(`Method ${req.method} Not Allowed`, {
       status: 405,
@@ -55,15 +54,15 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  let todos = readTodos();
+  const todos = readTodos();
   const id = (await req.json()) as string;
 
   if (!todos) {
     return NextResponse.json("Todo not found", { status: 404 });
   }
 
-  todos = todos.filter((t: Todo) => t.id !== id);
-  writeTodos(todos);
+  const updatedTodos = todos.filter((t: Todo) => t.id !== id);
+  writeTodos(updatedTodos);
 
   return NextResponse.json("Todo successfully deleted.", { status: 204 });
 }
