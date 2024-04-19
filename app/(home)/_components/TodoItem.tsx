@@ -1,6 +1,7 @@
 import { Todo } from "./TodoList";
 import { Button } from "@/app/_components/ui/button/Button";
 import styles from "@/app/(home)/styles/todoItem.module.css";
+import { useRouter } from "next/navigation";
 
 type TodoItemProps = {
   todo: Todo;
@@ -15,6 +16,7 @@ export const TodoItem = ({
   onEdit,
   onDelete,
 }: TodoItemProps) => {
+  const router = useRouter();
   return (
     <li className={styles.todoItemContainer}>
       <div className={styles.todoItemTitleSection}>
@@ -27,7 +29,10 @@ export const TodoItem = ({
         </span>
       </div>
       <div className={styles.todoItemActionButtons}>
-        <Button text="Detail" onClick={() => {}} />
+        <Button
+          text="Detail"
+          onClick={() => router.push(`/todos/${todo.id}`)}
+        />
         <Button text="Edit" onClick={() => onEdit(todo.id)} />
         <Button text="Delete" onClick={() => onDelete(todo.id)} />
       </div>
