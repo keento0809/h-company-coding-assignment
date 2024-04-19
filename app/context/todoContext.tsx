@@ -116,7 +116,6 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
         "Content-Type": "application/json",
       },
     });
-    console.log("res: ", res);
   };
 
   const handleDeleteTodo = async (id: string) => {

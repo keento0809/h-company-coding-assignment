@@ -43,7 +43,6 @@ export async function PUT(req: NextRequest) {
       todo.id === updatingTodo.id ? updatingTodo : todo
     );
     writeTodos(updatedTodos);
-    console.log("upd: ", updatedTodos);
 
     return NextResponse.json(updatingTodo, { status: 200 });
   } else {

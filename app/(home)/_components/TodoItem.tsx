@@ -31,10 +31,19 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
       <div className={styles.todoItemActionButtons}>
         <Button
           text="Detail"
+          bgColor="purple"
           onClick={() => router.push(`/todos/${todo.id}`)}
         />
-        <Button text="Edit" onClick={() => handleOpenEditTodoModal(todo.id)} />
-        <Button text="Delete" onClick={() => handleDeleteTodo(todo.id)} />
+        <Button
+          text="Edit"
+          bgColor="blue"
+          onClick={() => handleOpenEditTodoModal(todo.id)}
+        />
+        <Button
+          text="Delete"
+          bgColor="red"
+          onClick={() => handleDeleteTodo(todo.id)}
+        />
       </div>
     </li>
   );
