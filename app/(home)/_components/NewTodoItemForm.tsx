@@ -2,30 +2,19 @@ import { Button } from "@/app/_components/ui/button/Button";
 import { TextInput } from "@/app/_components/ui/input/TextInput";
 import styles from "@/app/(home)/styles/newTodoItemForm.module.css";
 import { FC } from "react";
-import { TodoType } from "../_hooks/useHomePageSection";
+import { useTodoContext } from "@/app/context/todoContext";
 
-type NewTodoItemFormProps = {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    todoType: TodoType
-  ) => void;
-  taskTitle: string;
-};
-
-export const NewTodoItemForm: FC<NewTodoItemFormProps> = ({
-  onSubmit,
-  onChange,
-  taskTitle,
-}) => {
+export const NewTodoItemForm: FC = () => {
+  const { handleAddNewTodo, handleChangeTodoTitle, newTodoTitle } =
+    useTodoContext();
   return (
-    <form onSubmit={onSubmit} className={styles.formContainer}>
+    <form onSubmit={handleAddNewTodo} className={styles.formContainer}>
       <div className={styles.formTitleSection}>
         <label htmlFor="taskTitle">Title</label>
         <TextInput
           id="taskTitle"
-          onChange={(e) => onChange(e, "NEW")}
-          value={taskTitle}
+          onChange={(e) => handleChangeTodoTitle(e, "NEW")}
+          value={newTodoTitle}
         />
       </div>
       <div className={styles.formActionButtons}>
