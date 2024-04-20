@@ -1,6 +1,6 @@
-# H-Company コーディング課題
+# 株式会社H&Company コーディング課題
 
-このリポジトリは 株式会社 H＆Company のコーディング課題であり、Next.js 13 (App Router), TypeScript, プレーンな CSS を用いて作成した TODO リストアプリケーションです。
+このリポジトリは 株式会社H＆Company のコーディング課題であり、Next.js 13 (App Router), TypeScript, プレーンな CSS を用いて作成した TODO リストアプリケーションです。
 
 ## インストール前提条件
 
@@ -68,3 +68,5 @@ app
 - 完了した Todo については、各 Todo の左端にあるチェックボックスにチェックを入れることで完了状態へ変更することができます。
 
 ## スクリーンショット
+
+![coding assignment](https://github.com/keento0809/h-company-coding-assignment/assets/65790344/b08a9599-90a8-41c3-8f78-43c46acaed30)
