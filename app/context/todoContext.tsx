@@ -110,7 +110,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     );
     setIsModalOpen(false);
 
-    const res = await fetch("/api/todos", {
+    await fetch("/api/todos", {
       method: "PUT",
       body: JSON.stringify(editingTodo),
       headers: {
