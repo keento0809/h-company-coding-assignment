@@ -76,13 +76,15 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
     setTodos((prev) => [...prev, newTodo]);
     setNewTodoTitle("");
-    await fetch("/api/todos", {
-      method: "POST",
-      body: JSON.stringify(newTodo),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+
+    process.env.NEXT_PUBLIC_APP_ENV === "development" &&
+      (await fetch("/api/todos", {
+        method: "POST",
+        body: JSON.stringify(newTodo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }));
   };
 
   const handleOpenEditTodoModal = (id: string) => {
@@ -110,25 +112,27 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     );
     setIsModalOpen(false);
 
-    await fetch("/api/todos", {
-      method: "PUT",
-      body: JSON.stringify(editingTodo),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    process.env.NEXT_PUBLIC_APP_ENV === "development" &&
+      (await fetch("/api/todos", {
+        method: "PUT",
+        body: JSON.stringify(editingTodo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }));
   };
 
   const handleDeleteTodo = async (id: string) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos([...updatedTodos]);
 
-    await fetch(`/api/todos?id=${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    process.env.NEXT_PUBLIC_APP_ENV === "development" &&
+      (await fetch(`/api/todos?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }));
   };
 
   const closeModal = () => {
@@ -141,7 +145,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    fetchTodos();
+    process.env.NEXT_PUBLIC_APP_ENV === "development" && fetchTodos();
   }, []);
 
   return (
