@@ -64,22 +64,17 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   if (req.method === "DELETE") {
-    try {
-      const todos = readTodos();
-      const id = (await req.json()) as string;
+    const id = (await req.json()) as string;
+    const todos = readTodos();
 
-      if (!todos) {
-        return NextResponse.json("Todo not found", { status: 404 });
-      }
-
-      const updatedTodos = todos.filter((t: Todo) => t.id !== id);
-      writeTodos(updatedTodos);
-
-      return NextResponse.json("Todo successfully deleted.", { status: 204 });
-    } catch (error) {
-      console.error(error);
-      return NextResponse.json(error, { status: 500 });
+    if (!todos) {
+      return NextResponse.json("Todo not found", { status: 404 });
     }
+
+    const updatedTodos = todos.filter((t: Todo) => t.id !== id);
+    writeTodos(updatedTodos);
+
+    return NextResponse.json("Todo successfully deleted.", { status: 204 });
   } else {
     return NextResponse.json(`Method ${req.method} Not Allowed`, {
       status: 405,
