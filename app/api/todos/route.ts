@@ -15,14 +15,19 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   if (req.method === "POST") {
-    const newTodo = (await req.json()) as Todo;
-    const todos = readTodos();
+    try {
+      const newTodo = (await req.json()) as Todo;
+      const todos = readTodos();
 
-    if (!todos) return NextResponse.json("Todo not found", { status: 404 });
+      if (!todos) return NextResponse.json("Todo not found", { status: 404 });
 
-    todos.push(newTodo);
-    writeTodos(todos);
-    return NextResponse.json(newTodo, { status: 201 });
+      todos.push(newTodo);
+      writeTodos(todos);
+      return NextResponse.json(newTodo, { status: 201 });
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json(error, { status: 500 });
+    }
   } else {
     return NextResponse.json(`Method ${req.method} Not Allowed`, {
       status: 405,
