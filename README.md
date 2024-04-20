@@ -1,8 +1,8 @@
-# H-Company コーディング課題 / ローカルでの実行環境構築手順書
+# H-Company コーディング課題
 
-このリポジトリは H-Company のコーディング課題であり、TypeScript、ESLint、Axios を使用して構築された Next.js アプリケーションです。
+このリポジトリは 株式会社 H＆Company のコーディング課題であり、Next.js 13 (App Router), TypeScript, プレーンな CSS を用いて作成した TODO リストアプリケーションです。
 
-## 前提条件
+## インストール前提条件
 
 - Node.js がインストールされていること
 - npm (または Yarn ですが、以下のコマンドはすべて npm を使用します)がインストールされていること
@@ -18,9 +18,9 @@
 
 2. コマンドラインで、クローンしたディレクトリに移動します。
 
-```
-cd h-company-coding-assignment
-```
+   ```
+   cd h-company-coding-assignment
+   ```
 
 3. `npm install` を実行して、アプリケーションの依存関係をインストールします。
 
@@ -30,30 +30,41 @@ cd h-company-coding-assignment
 
 ## プロジェクト構成
 
+```plaintext
 app
-├── \_components  
-│ └── styles  
-│ └── ui
-├── (home)
-│ ├── \_components
-│ └── styles
-├── api
-│ └── todos
-│ └── route.ts
-├── context
-│ └── todoContext.ts
+├── _components             # プロジェクト内全般で使用される共通のコンポーネント
+│   ├── styles              # 共通のコンポーネントのmodules.cssを格納
+│   └── ui                  # button, inputなどのuiコンポーネント
+├── (home)                  # Topページで使用されるファイルを格納
+│   ├── _components         # Topページで使用されるコンポーネント
+│   └── styles              # Topページで使用されるコンポーネントのmodules.cssを格納
+├── api                     # API request declarations
+│   └── todos
+│       └── route.ts        # data.jsonを更新するためのAPI Routeを定義
+├── context                 # Context API declaration
+│   └── todoContext.ts      # Global Stateを定義
 ├── data
-│ └── todos.json
-├── todos
-│ ├── [id]
-│ │ ├── \_components
-│ │ ├── \_hooks
-│ │ ├── styles
-│ │ ├── layout.tsx
-│ │ └── page.tsx
-│ └── index.ts
+│   └── todos.json          # フロント側でデータを保存するためのjsonファイル
+├── todos                   # Todoの詳細ページで使用されるファイルを格納
+│   ├── [id]                # Dynamic route
+│   │   ├── _components     # Todoの詳細ページで使用されるコンポーネント
+│   │   ├── _hooks          # Todoの詳細ページで使用されるカスタムフック
+│   │   ├── styles          # Todoの詳細ページで使用されるコンポーネントのmodule.cssを格納
+│   │   ├── layout.tsx      # Todoの詳細ページのレイアウト
+│   │   └── page.tsx        # Todoの詳細ページのpage
 ├── utils
+|   └── index.ts            # API Routeで使用されるfunctionを定義
 ├── favicon.ico
 ├── globals.css
-├── layout.tsx
-└── page.tsx
+├── layout.tsx              # Root Layout
+└── page.tsx                # Root Page
+```
+
+## アプリケーションの特徴
+
+- Next.js の App Router を用いた、シンプルで分かりやすいディレクトリ構造となっています。
+- プレーンな CSS によるスタイリングには CSS Modules を用いています。
+- Todo の新規作成、更新、削除に応じて Todo のデータを Global State だけでなく、`data.json`にも保存します。（`/api/todos`を用いて`data.json`を更新しています。）その為、ページをリロードしても Todo のデータはリセットされることなく表示されます。
+- 完了した Todo については、各 Todo の左端にあるチェックボックスにチェックを入れることで完了状態へ変更することができます。
+
+## スクリーンショット
