@@ -5,9 +5,8 @@ import { ReactNode } from "react";
 
 type ModalProps = {
   children: ReactNode;
-  onClose: () => void;
 };
 
-export const Modal = ({ children, onClose }: ModalProps) => {
+export const Modal = ({ children }: ModalProps) => {
   return <div className={styles.modal}>{children}</div>;
 };

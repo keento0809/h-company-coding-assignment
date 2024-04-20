@@ -8,7 +8,7 @@ export const EditTodoModal = () => {
   const { closeModal, handleUpdateTodo, editingTodo, handleChangeTodoTitle } =
     useTodoContext();
   return (
-    <Modal onClose={closeModal}>
+    <Modal>
       <form className={styles.modalContainer} onSubmit={handleUpdateTodo}>
         <div className={styles.modalTitleSection}>
           <label htmlFor="todoTitle">Title</label>
