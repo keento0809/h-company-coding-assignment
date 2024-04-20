@@ -123,9 +123,8 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos([...updatedTodos]);
 
-    await fetch("/api/todos", {
+    await fetch(`/api/todos?id=${id}`, {
       method: "DELETE",
-      body: JSON.stringify(id),
       headers: {
         "Content-Type": "application/json",
       },
