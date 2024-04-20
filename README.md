@@ -1,6 +1,6 @@
-# 株式会社H&Company コーディング課題
+# 株式会社 H&Company コーディング課題
 
-このリポジトリは 株式会社H＆Company のコーディング課題であり、Next.js 13 (App Router), TypeScript, プレーンな CSS を用いて作成した TODO リストアプリケーションです。
+このリポジトリは 株式会社 H＆Company のコーディング課題であり、Next.js 13 (App Router), TypeScript, プレーンな CSS を用いて作成した TODO リストアプリケーションです。
 
 ## インストール前提条件
 
@@ -66,6 +66,7 @@ app
 - プレーンな CSS によるスタイリングには CSS Modules を用いています。
 - Todo の新規作成、更新、削除に応じて Todo のデータを Global State だけでなく、`data.json`にも保存します。（`/api/todos`を用いて`data.json`を更新しています。）その為、ページをリロードしても Todo のデータはリセットされることなく表示されます。
 - 完了した Todo については、各 Todo の左端にあるチェックボックスにチェックを入れることで完了状態へ変更することができます。
+- GitHub Actions を導入し、デプロイメントのプロセスを自動化しています。
 
 ## スクリーンショット
 

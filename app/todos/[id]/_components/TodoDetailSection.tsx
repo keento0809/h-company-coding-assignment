@@ -15,7 +15,7 @@ export const TodoDetailSection = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Todo Detail - {correspondingTodo?.id}</h2>
+      <h2>Todo Detail</h2>
       <div className={styles.todoContentsSection}>
         <div className={styles.todoContent}>
           <h4 className={styles.contentTitle}>Todo title: </h4>
