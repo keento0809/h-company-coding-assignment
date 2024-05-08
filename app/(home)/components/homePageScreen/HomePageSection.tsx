@@ -3,7 +3,7 @@
 import styles from "@/app/(home)/components/homePageScreen/homePageSection.module.css";
 import { TodoList } from "../todoList/TodoList";
 import { EditTodoModal } from "../editTodoModal/EditTodoModal";
-import { NewTodoItemForm } from "../newTodoItem/NewTodoItemForm";
+import { NewTodoItemForm } from "../newTodoItemForm/NewTodoItemForm";
 import { useTodoContext } from "@/app/context/todoContext";
 
 export const HomePageSection = () => {

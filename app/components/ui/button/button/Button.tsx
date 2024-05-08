@@ -14,11 +14,13 @@ export const Button = ({
   bgColor,
   conditionalStyles,
   onClick,
+  disabled,
 }: ButtonProps) => {
   return (
     <button
       className={styles.button}
       onClick={onClick}
+      disabled={disabled}
       style={{ borderColor: bgColor, ...conditionalStyles }}
     >
       {text}
