@@ -1,4 +1,4 @@
-import { TodoDetailSection } from "./_components/TodoDetailSection";
+import { TodoDetailSection } from "./_components/todoDetailSection/TodoDetailSection";
 
 export default function TodoDetail() {
   return <TodoDetailSection />;

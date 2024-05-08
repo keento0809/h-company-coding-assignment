@@ -1,5 +1,5 @@
-import { Button } from "@/app/_components/ui/button/Button";
-import { TextInput } from "@/app/_components/ui/input/TextInput";
+import { Button } from "@/app/components/ui/button/button/Button";
+import { TextInput } from "@/app/components/ui/input/textInput/TextInput";
 import styles from "@/app/(home)/styles/newTodoItemForm.module.css";
 import { FC } from "react";
 import { useTodoContext } from "@/app/context/todoContext";

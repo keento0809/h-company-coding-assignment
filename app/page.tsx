@@ -1,4 +1,4 @@
-import { HomePageSection } from "@/app/(home)/_components/HomePageSection";
+import { HomePageSection } from "@/app/(home)/_components/homePageScreen/HomePageSection";
 
 export default function Home() {
   return <HomePageSection />;

@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "@/app/todos/[id]/styles/todoDetailSection.module.css";
-import { useTodoDetailSection } from "../_hooks/useTodoDetailSection";
+import { useTodoDetailSection } from "../../_hooks/useTodoDetailSection";
 import { useTodoContext } from "@/app/context/todoContext";
-import { Button } from "@/app/_components/ui/button/Button";
+import { Button } from "@/app/components/ui/button/button/Button";
 
 export const TodoDetailSection = () => {
   const { router, redirect, path } = useTodoDetailSection();
