@@ -1,7 +1,7 @@
 "use client";
 
 import { ComponentProps } from "react";
-import styles from "@/app/components/ui/button/button.module.css";
+import styles from "@/app/components/ui/button/button/button.module.css";
 
 type ButtonProps = ComponentProps<"button"> & {
   text: string;
