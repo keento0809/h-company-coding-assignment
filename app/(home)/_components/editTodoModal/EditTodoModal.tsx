@@ -1,5 +1,5 @@
 import { Modal } from "@/app/components/ui/modal/modal/Modal";
-import styles from "@/app/(home)/styles/editTaskModal.module.css";
+import styles from "@/app/(home)/editTodoModal/editTodoModal.module.css";
 import { Button } from "@/app/components/ui/button/button/Button";
 import { TextInput } from "@/app/components/ui/input/textInput/TextInput";
 import { useTodoContext } from "@/app/context/todoContext";

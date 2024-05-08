@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/(home)/styles/todoList.module.css";
+import styles from "@/app/(home)/todoList/todoList.module.css";
 import { TodoItem } from "../todoItem/TodoItem";
 import { FC } from "react";
 import { useTodoContext } from "@/app/context/todoContext";

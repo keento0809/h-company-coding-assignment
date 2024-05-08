@@ -1,6 +1,6 @@
 import { Todo } from "@/app/context/todoContext";
 import { Button } from "@/app/components/ui/button/button/Button";
-import styles from "@/app/(home)/styles/todoItem.module.css";
+import styles from "@/app/(home)/todoItem/todoItem.module.css";
 import { useRouter } from "next/navigation";
 import { useTodoContext } from "@/app/context/todoContext";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/todos/[id]/styles/todoDetailSection.module.css";
+import styles from "@/app/todos/[id]/todoDetailSection/todoDetailSection.module.css";
 import { useTodoDetailSection } from "../../_hooks/useTodoDetailSection";
 import { useTodoContext } from "@/app/context/todoContext";
 import { Button } from "@/app/components/ui/button/button/Button";

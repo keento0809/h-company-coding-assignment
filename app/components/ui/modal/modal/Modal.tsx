@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/_components/styles/modal.module.css";
+import styles from "@/app/_components/ui/modal/modal.module.css";
 import { ReactNode } from "react";
 
 type ModalProps = {
