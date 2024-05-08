@@ -1,13 +1,16 @@
 import { Button } from "@/app/components/ui/button/button/Button";
 import { TextInput } from "@/app/components/ui/input/textInput/TextInput";
-import styles from "@/app/(home)/components/newTodoItem/newTodoItemForm.module.css";
+import styles from "@/app/(home)/components/newTodoItemForm/newTodoItemForm.module.css";
 import { FC } from "react";
 import { useTodoContext } from "@/app/context/todoContext";
 
 export const NewTodoItemForm: FC = () => {
   const { handleAddNewTodo, handleChangeTodoTitle, newTodoTitle } =
     useTodoContext();
-  const isDisabled = newTodoTitle.length === 0;
+  const isDisabled = !!(
+    newTodoTitle.length === 0 || newTodoTitle.replace(/\s/g, "").length === 0
+  );
+
   return (
     <form onSubmit={handleAddNewTodo} className={styles.formContainer}>
       <div className={styles.formTitleSection}>
@@ -27,6 +30,7 @@ export const NewTodoItemForm: FC = () => {
           conditionalStyles={{
             opacity: isDisabled ? "0.7" : "inherit",
             cursor: isDisabled ? "not-allowed" : "pointer",
+            transform: isDisabled ? "none" : "",
           }}
         />
       </div>

@@ -66,7 +66,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const handleAddNewTodo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newTodoTitle.trim() === "") throw new Error("New task title is empty.");
+    if (newTodoTitle.trim() === "") console.error("New task title is empty.");
 
     const newTodo = {
       id: uuidv4(),
