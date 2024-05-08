@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/(home)/homePageSection/homePageSection.module.css";
+import styles from "@/app/(home)/components/homePageScreen/homePageSection.module.css";
 import { TodoList } from "../todoList/TodoList";
 import { EditTodoModal } from "../editTodoModal/EditTodoModal";
 import { NewTodoItemForm } from "../newTodoItem/NewTodoItemForm";
