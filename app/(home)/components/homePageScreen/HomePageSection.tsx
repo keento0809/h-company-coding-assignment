@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "@/app/(home)/styles/homePageSection.module.css";
-import { TodoList } from "./TodoList";
-import { EditTodoModal } from "./EditTodoModal";
-import { NewTodoItemForm } from "./NewTodoItemForm";
+import styles from "@/app/(home)/components/homePageScreen/homePageSection.module.css";
+import { TodoList } from "../todoList/TodoList";
+import { EditTodoModal } from "../editTodoModal/EditTodoModal";
+import { NewTodoItemForm } from "../newTodoItem/NewTodoItemForm";
 import { useTodoContext } from "@/app/context/todoContext";
 
 export const HomePageSection = () => {

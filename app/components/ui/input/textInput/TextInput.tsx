@@ -1,7 +1,7 @@
 "use client";
 
 import { ComponentProps } from "react";
-import styles from "@/app/_components/styles/textInput.module.css";
+import styles from "@/app/components/ui/input/textInput/textInput.module.css";
 
 type TextInputProps = ComponentProps<"input">;
 

@@ -1,7 +1,7 @@
-import { Modal } from "@/app/_components/ui/modal/Modal";
-import styles from "@/app/(home)/styles/editTaskModal.module.css";
-import { Button } from "@/app/_components/ui/button/Button";
-import { TextInput } from "@/app/_components/ui/input/TextInput";
+import { Modal } from "@/app/components/ui/modal/modal/Modal";
+import styles from "@/app/(home)/components/editTodoModal/editTodoModal.module.css";
+import { Button } from "@/app/components/ui/button/button/Button";
+import { TextInput } from "@/app/components/ui/input/textInput/TextInput";
 import { useTodoContext } from "@/app/context/todoContext";
 
 export const EditTodoModal = () => {
