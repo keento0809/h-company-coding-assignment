@@ -7,6 +7,7 @@ import { useTodoContext } from "@/app/context/todoContext";
 export const NewTodoItemForm: FC = () => {
   const { handleAddNewTodo, handleChangeTodoTitle, newTodoTitle } =
     useTodoContext();
+  const isDisabled = newTodoTitle.length === 0;
   return (
     <form onSubmit={handleAddNewTodo} className={styles.formContainer}>
       <div className={styles.formTitleSection}>
@@ -18,7 +19,16 @@ export const NewTodoItemForm: FC = () => {
         />
       </div>
       <div className={styles.formActionButtons}>
-        <Button text="Add" bgColor="purple" type="submit" />
+        <Button
+          text="Add"
+          bgColor="purple"
+          type="submit"
+          disabled={isDisabled}
+          conditionalStyles={{
+            opacity: isDisabled ? "0.7" : "inherit",
+            cursor: isDisabled ? "not-allowed" : "pointer",
+          }}
+        />
       </div>
     </form>
   );
